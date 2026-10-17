@@ -1,0 +1,50 @@
+diff --git a/src/basic_mobile_robot/models/basic_mobile_bot.xacro.urdf b/src/basic_mobile_robot/models/basic_mobile_bot.xacro.urdf
+index 2892755..24328ad 100644
+--- a/src/basic_mobile_robot/models/basic_mobile_bot.xacro.urdf
++++ b/src/basic_mobile_robot/models/basic_mobile_bot.xacro.urdf
+@@ -8,12 +8,12 @@
+   <xacro:property name="base_height" value="0.20"/>
+ 	
+   <!-- Define the shape of the robot's two back wheels in meters -->
+-  <xacro:property name="wheel_radius" value="0.14"/>
++  <xacro:property name="wheel_radius" value="0.06"/>
+   <xacro:property name="wheel_width" value="0.06"/>
+ 
+   <!-- x-axis points forward, y-axis points to left, z-axis points upwards -->
+   <!-- Define the gap between the wheel and chassis along y-axis in meters -->
+-  <xacro:property name="wheel_ygap" value="0.035"/>
++  <xacro:property name="wheel_ygap" value="0.06"/>
+ 
+   <!-- Position the wheels along the z-axis -->
+   <xacro:property name="wheel_zoff" value="0.05"/>
+@@ -293,5 +293,30 @@
+ 
+     </plugin>
+   </gazebo>
++  <link name="beacon_link">
++    <visual>
++      <geometry>
++        <sphere radius="0.03"/>
++      </geometry>
++      <material name="yellow">
++        <color rgba="1 1 0 1"/>
++      </material>
++    </visual>
++    <collision>
++      <geometry>
++        <sphere radius="0.03"/>
++      </geometry>
++    </collision>
++    <xacro:sphere_inertia m="0.05" r="0.03"/>
++  </link>
++  <gazebo reference="beacon_link">
++    <material>Gazebo/Yellow</material>
++  </gazebo>
++
++  <joint name="beacon_joint" type="fixed">
++    <parent link="base_link"/>
++    <child link="beacon_link"/>
++    <origin xyz="0 0 0.12" rpy="0 0 0"/>
++  </joint>
+ 
+ </robot>

@@ -3,13 +3,13 @@
 Coursework project (MGTU STANKIN, ROS 2 seminars): an RRT* planner implemented
 from scratch in Python and tested in Gazebo Classic on two robots.
 
-| |  mobile robot | KUKA YouBot arm |
+ mobile robot & KUKA YouBot arm 
 
 | Configuration space | 2D (x, y) | 5D (joint angles) |
 | Obstacle | circle, r = 0.35 m | sphere, r = 0.10 m |
-| Nodes explored | 708 | 2999 |
-| Planning time | 0.19 s | 10.4 s |
-| Result | 3.12 m path, goal reached | 22.8 mm final end-effector error |
+ Nodes explored | 708 | 2999 |
+ Planning time | 0.19 s | 10.4 s |
+ Result | 3.12 m path, goal reached | 22.8 mm final end-effector error |
 
 Going from 2 to 5 dimensions made planning about 50x slower.
 

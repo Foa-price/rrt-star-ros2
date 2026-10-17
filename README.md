@@ -18,8 +18,8 @@ Going from 2 to 5 dimensions made planning about 50x slower.
   (`rrt_star_planner` for the mobile robot, `rrt_star_arm_planner` for the arm).
   The arm planner uses forward kinematics built from the YouBot URDF and
   checks collisions on interpolated points along each link.
-- `youbot_fixes/`: a bug I diagnosed in the course's YouBot Gazebo model (below).
-- `patches/`: diffs of my changes to the course files.
+- `youbot_fixes/`: a bug I diagnosed in the course's YouBot Gazebo model (below). It contains the relay node, the fixed launch file and `apply_sdf_fix.sh`.
+- `patches/`: diff of my changes to the mobile robot model (`basic_mobile_robot`).
 
 ## The bug: a TF tree split in two
 Rosbags recorded with the stock YouBot model had no usable `/tf` from `world`
@@ -38,8 +38,10 @@ during rosbag playback.
 
 ## Run
 Needs the course workspace (https://github.com/MrBoriska/ros2_seminars_ws)
-for the robot models. Copy `rrt_star_nav/` into its `src/`, apply
-`patches/`, then:
+for the robot models. Copy `rrt_star_nav/` into its `src/`, copy the files of
+`youbot_fixes/` into `youbot_description/` (the node into `scripts/`, the launch
+file into `launch/`, and register the node in `CMakeLists.txt`), run
+`youbot_fixes/apply_sdf_fix.sh` on the `model.sdf`, then:
 ```bash
 colcon build --symlink-install
 ros2 launch youbot_description youbot_gazebo.launch.py
